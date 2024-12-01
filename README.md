@@ -19,4 +19,8 @@ Phew, now that really is everything! 😅
 
 ## Day 1
 
+It was actually really easy, but had some problems with keyboard (physical and EN layout). Otherwise fine, but streaming this is a bit of a challange.
+
+## Day 2
+
 Placeholder

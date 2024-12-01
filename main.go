@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc2024/solutions"
+	solutions "aoc2024/solutions/1"
 )
 
 func day1() {
