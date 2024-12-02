@@ -23,7 +23,7 @@ It was actually really easy, but had some problems with keyboard (physical and E
 
 ## Day 2
 
-That was a rollercoaster. Part 1 easy as hell, but I wanted to do a fancy solution for part 2... didn't work out 😅. Spend wayyyy to much time here and in the end opted for the straightforeard "bruteforce" solution.
+That was a rollercoaster. Part 1 was easy as hell, but I wanted to do a fancy solution for part 2... didn't work out 😅. Spent *wayyyy* to much time here and in the end opted for the straightforward "bruteforce" solution. Not my best day.
 
 ## Day 3
 
