@@ -23,4 +23,8 @@ It was actually really easy, but had some problems with keyboard (physical and E
 
 ## Day 2
 
+That was a rollercoaster. Part 1 easy as hell, but I wanted to do a fancy solution for part 2... didn't work out 😅. Spend wayyyy to much time here and in the end opted for the straightforeard "bruteforce" solution.
+
+## Day 3
+
 Placeholder
