@@ -1,11 +1,10 @@
-package solutions_day1
+package solutions_day2
 
 import (
 	"bufio"
 	"fmt"
 	"log"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -44,48 +43,8 @@ func readInput(filename string) ([]int, []int) {
 	return list1, list2
 }
 
-func abs(x int) int {
-	if x > 0 {
-		return x
-	} else {
-		return -x
-	}
-}
-
 func Solve() {
-	list1, list2 := readInput("solutions/1/input.txt")
+	readInput("solutions/1/input.txt")
 	fmt.Println("Solving...")
-
-	sort.Ints(list1)
-	sort.Ints(list2)
-
-	// Part 1
-
-	var sum int = 0
-	for i, _ := range list1 {
-		sum += abs(list2[i] - list1[i])
-	}
-
-	fmt.Println(sum)
-
-	// Part 2
-	sum = 0
-	var pointer int = 0
-	for i, _ := range list1 {
-		// Find the number in the second list
-		number := list1[i]
-		for pointer < len(list2) && list2[pointer] < number {
-			pointer++
-		}
-		var p2 = pointer
-		if list2[pointer] == number {
-			for p2 < len(list2) && list2[p2] == number {
-				sum += number
-				p2++
-			}
-		}
-	}
-
-	fmt.Println(sum)
 
 }
