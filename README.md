@@ -4,7 +4,7 @@
 
 This year it's GO time 😎 ...
 
-... and VIM time 😎 ...
+... ~~and VIM time~~ for the VIM 😎 ... *courtesy of @nsk4*
 
 ... and stream time 😎 (although we will see how that goes)!
 
@@ -19,7 +19,7 @@ Phew, now that really is everything! 😅
 
 ## Day 1
 
-It was actually really easy, but had some problems with keyboard (physical and EN layout). Otherwise fine, but streaming this is a bit of a challange.
+It was actually really easy, but had some problems with keyboard (physical and EN layout). Otherwise fine, but streaming this is a bit of a challenge.
 
 ## Day 2
 
