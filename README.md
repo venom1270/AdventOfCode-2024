@@ -27,4 +27,4 @@ That was a rollercoaster. Part 1 was easy as hell, but I wanted to do a fancy so
 
 ## Day 3
 
-Placeholder
+THis day was straightforward and easy. I was a bit scared part 2 was gonna be more complex (nesting) and that I would have to rewrite my loop in recursion form, but that was not neccessary thankfully! 😎
