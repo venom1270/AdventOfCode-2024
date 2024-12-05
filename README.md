@@ -32,3 +32,7 @@ THis day was straightforward and easy. I was a bit scared part 2 was gonna be mo
 ## Day 4
 
 Pretty easy, got it (almost) first try (stupid GO slices!!). Part 2 easier than part 1, or at least less verbose 😄. Onwards!!! 😎
+
+## Day 5
+
+Parsing was a bit more involved (nothing like last year though, thankfully). Part 1 was easy, part 2 aswell after some thought. This year is going pretty well so far! 😎 *Famous last words...* 😅
