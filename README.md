@@ -36,3 +36,7 @@ Pretty easy, got it (almost) first try (stupid GO slices!!). Part 2 easier than 
 ## Day 5
 
 Parsing was a bit more involved (nothing like last year though, thankfully). Part 1 was easy, part 2 aswell after some thought. This year is going pretty well so far! 😎 *Famous last words...* 😅
+
+## Day 6
+
+Pretty easy overall. I liked it a lot. Took a bit more time than previous days. Part 2 took a while to compute (5+ seconds), but the answer was correct. Both part 1 and part 2 worked first try (not counting syntax error and typos). Maybe I could optimeze part 2 a bit by starting the test just 1 move before encountering the new (placed) obstacle, but I would need to save the Position struct when doing Part 1.
