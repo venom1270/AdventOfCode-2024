@@ -40,3 +40,7 @@ Parsing was a bit more involved (nothing like last year though, thankfully). Par
 ## Day 6
 
 Pretty easy overall. I liked it a lot. Took a bit more time than previous days. Part 2 took a while to compute (5+ seconds), but the answer was correct. Both part 1 and part 2 worked first try (not counting syntax error and typos). Maybe I could optimeze part 2 a bit by starting the test just 1 move before encountering the new (placed) obstacle, but I would need to save the Position struct when doing Part 1.
+
+## Day 7
+
+That was easier than expected! Dusting off recursion after a while, feels good! An additional challenge for me was talking (IRL, not on stream) while doing this day. But I managed to complete it in ~30min. 😎🥳
