@@ -44,3 +44,11 @@ Pretty easy overall. I liked it a lot. Took a bit more time than previous days. 
 ## Day 7
 
 That was easier than expected! Dusting off recursion after a while, feels good! An additional challenge for me was talking (IRL, not on stream) while doing this day. But I managed to complete it in ~30min. 😎🥳
+
+## Day 8
+
+Ramping up... this took almost an hour (actually more if we count input parsing). Had some trouble with GOs references (some array elements were changed because some reference pointed to them), but otherwise the solution was relatively straightforward. Used a map to gather all connected antennas, and then just calulated the distance and extrapoled until valid for part 2. Yeah, we are slowly ramping up, exited for the next days... 😎
+
+## Day 9
+
+Disk fragmentation-like task. Pretty nice, enjoyed it. Had some bugs which took me some time to solve (especiall part 2), but otherwise not that difficult algorithm-wise. Still going strong!! 😎😎
