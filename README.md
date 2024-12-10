@@ -52,3 +52,7 @@ Ramping up... this took almost an hour (actually more if we count input parsing)
 ## Day 9
 
 Disk fragmentation-like task. Pretty nice, enjoyed it. Had some bugs which took me some time to solve (especiall part 2), but otherwise not that difficult algorithm-wise. Still going strong!! 😎😎
+
+## Day 10
+
+Finally some recursion!! That was quite easy I think I set a personal record 😄. I completed both parts even faster than Day 1 😅😅. Accidentaly did part 2 first and then was bamboozled why part 1 didn't work - note to myself: LEARN TO READ!! 🚨😅🚨 
