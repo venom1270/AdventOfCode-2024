@@ -55,4 +55,8 @@ Disk fragmentation-like task. Pretty nice, enjoyed it. Had some bugs which took 
 
 ## Day 10
 
-Finally some recursion!! That was quite easy I think I set a personal record 😄. I completed both parts even faster than Day 1 😅😅. Accidentaly did part 2 first and then was bamboozled why part 1 didn't work - note to myself: LEARN TO READ!! 🚨😅🚨 
+Finally some recursion!! That was quite easy I think I set a personal record 😄. I completed both parts even faster than Day 1 😅😅. Accidentaly did part 2 first and then was bamboozled why part 1 didn't work - note to myself: LEARN TO READ!! 🚨😅🚨
+
+## Day 11
+
+First hard one - managed to do only day 11. Different methods for day 2 that I tried are too slow 🤔. I think my method of DFS and memoization should work but I'm clearly missing something. A mystery for another day! 😄
