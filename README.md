@@ -65,4 +65,4 @@ EDIT 12.12.2024: I did it! Day 12 gave me the motivation to try solving part 2 -
 
 ## Day 12
 
-I feel so proud for this one!! Managed to figure out part 2 on my own without any noteworth prior knowledge on how to approach those kind of problems 🥳😄😎 I really liked todays challenge - totally unbiased statement! 😄 Flood fill (I guess?) with some form of edge detection (part 1 simple, part 2 quite a lot more complex).
+I feel so proud for this one!! Managed to figure out part 2 on my own without any noteworthy prior knowledge on how to approach those kinds of problems 🥳😄😎 I really liked todays challenge - totally unbiased statement! 😄 Flood fill (I guess?) with some form of edge detection (part 1 simple, part 2 quite a lot more complex).
