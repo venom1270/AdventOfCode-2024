@@ -60,3 +60,7 @@ Finally some recursion!! That was quite easy I think I set a personal record �
 ## Day 11
 
 First hard one - managed to do only day 11. Different methods for day 2 that I tried are too slow 🤔. I think my method of DFS and memoization should work but I'm clearly missing something. A mystery for another day! 😄
+
+## Day 12
+
+I feel so proud for this one!! Managed to figure out part 2 on my own without any noteworth prior knowledge on how to approach those kind of problems 🥳😄😎 I really liked todays challenge - totally unbiased statement! 😄 Flood fill (I guess?) with some form of edge detection (part 1 simple, part 2 quite a lot more complex).
