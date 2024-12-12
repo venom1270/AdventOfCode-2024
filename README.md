@@ -61,6 +61,8 @@ Finally some recursion!! That was quite easy I think I set a personal record �
 
 First hard one - managed to do only day 11. Different methods for day 2 that I tried are too slow 🤔. I think my method of DFS and memoization should work but I'm clearly missing something. A mystery for another day! 😄
 
+EDIT 12.12.2024: I did it! Day 12 gave me the motivation to try solving part 2 - but I can't believe what a stupid mistake I made. The challenge requires only a simple memoization. Yet I thought it was not enough because I forgot to change recursion call from naive() to memoization() on one of the branches!!!!!! 😅😅 A VERY EASY day if you're not a complete dum-dum (which I was yesterday apparently - I blame my late coming home and expending all my brain power on board games that evening 😄😅). And I kept trying to discover hot water with cycles, some complex memoization, at the end even a trace which would update the rolling sum (kind of dynamic programming basically). 🤪 Anyway, glad that I made it! Got all 24 stars so far. Half of AoC done! 😎🥳
+
 ## Day 12
 
 I feel so proud for this one!! Managed to figure out part 2 on my own without any noteworth prior knowledge on how to approach those kind of problems 🥳😄😎 I really liked todays challenge - totally unbiased statement! 😄 Flood fill (I guess?) with some form of edge detection (part 1 simple, part 2 quite a lot more complex).

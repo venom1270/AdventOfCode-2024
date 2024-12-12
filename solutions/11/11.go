@@ -35,24 +35,6 @@ func readInput(filename string) []int {
 	return stones
 }
 
-func evenDigits(num int) bool {
-	even := false
-	for num/10 != 0 {
-		num /= 10
-		even = !even
-	}
-	return even
-}
-
-type Pos struct {
-	num          int
-	depth        int
-	nextNumCount int
-	depthDiff    int
-}
-
-var memo map[int]Pos
-
 var MAX_DEPTH int
 
 func naive(num int, depth int) int {
@@ -71,78 +53,32 @@ func naive(num int, depth int) int {
 	}
 }
 
-func memoization2(num int, depth int) int {
-	// TODO next time
-
-	if depth >= MAX_DEPTH {
-		return 1
-	}
-
-	if val, ok := memo[num]; ok {
-		// CYCLE
-		fmt.Println("Cycle", num, depth, val.depth)
-		val.depthDiff = depth - val.depth
-		memo[num] = val
-		return 0
-	} else {
-		m := Pos{num, depth, 0, 0}
-		memo[num] = m
-	}
-
-	sum := 0
-
-	if num == 0 {
-		sum = memoization2(1, depth+1)
-	} else if s := strconv.Itoa(num); len(s)%2 == 0 {
-		num1, _ := strconv.Atoi(s[:len(s)/2])
-		num2, _ := strconv.Atoi(s[len(s)/2:])
-		sum = memoization2(num1, depth+1) + naive(num2, depth+1)
-	} else {
-		sum = memoization2(num*2024, depth+1)
-	}
-
-	val, _ := memo[num]
-	if val.depthDiff == 0 {
-		return sum
-	} else {
-		fmt.Println("Working")
-	}
-	val.nextNumCount = sum
-	memo[num] = val
-	numCycles := (MAX_DEPTH - depth) / val.depthDiff
-
-	fmt.Println("cycle of num with depthDiff depth numCycles", num, val.depthDiff, depth, numCycles)
-
-	sum = sum*numCycles + naive(num, depth+numCycles*val.depthDiff)
-
-	return sum
-
+type SimplePos struct {
+	val   int
+	depth int
 }
 
-var simpleMemo map[Pos]int
+var simpleMemo map[SimplePos]int
 
-func memoization(num int, depth int) int {
-	// TODO next time
+func memoization(num int, depth int, sum int) int {
 
 	if depth >= MAX_DEPTH {
-		return 1
+		return sum + 1
 	}
 
-	key := Pos{num, depth, 0, 0}
+	key := SimplePos{num, depth}
 	if val, ok := simpleMemo[key]; ok {
 		return val
 	}
 
-	sum := 0
-
 	if num == 0 {
-		sum = memoization(1, depth+1)
+		sum = memoization(1, depth+1, sum)
 	} else if s := strconv.Itoa(num); len(s)%2 == 0 {
 		num1, _ := strconv.Atoi(s[:len(s)/2])
 		num2, _ := strconv.Atoi(s[len(s)/2:])
-		sum = memoization(num1, depth+1) + naive(num2, depth+1)
+		sum = memoization(num1, depth+1, sum) + memoization(num2, depth+1, sum)
 	} else {
-		sum = memoization(num*2024, depth+1)
+		sum = memoization(num*2024, depth+1, sum)
 	}
 
 	simpleMemo[key] = sum
@@ -152,12 +88,12 @@ func memoization(num int, depth int) int {
 }
 
 func Solve() {
-	nums := readInput("solutions/11/test.txt")
+	nums := readInput("solutions/11/input.txt")
 	fmt.Println(nums)
 
 	// Part 1
 	sum := 0
-	MAX_DEPTH = 20
+	MAX_DEPTH = 25
 	for _, num := range nums {
 		sum += naive(num, 0)
 	}
@@ -165,11 +101,10 @@ func Solve() {
 
 	// Part 2
 	sum = 0
-	MAX_DEPTH = 20
-	memo = map[int]Pos{}
-	simpleMemo = map[Pos]int{}
+	MAX_DEPTH = 75
+	simpleMemo = map[SimplePos]int{}
 	for _, num := range nums {
-		sum += memoization2(num, 0)
+		sum += memoization(num, 0, 0)
 	}
 
 	fmt.Println("Part 2: ", sum)
