@@ -66,3 +66,7 @@ EDIT 12.12.2024: I did it! Day 12 gave me the motivation to try solving part 2 -
 ## Day 12
 
 I feel so proud for this one!! Managed to figure out part 2 on my own without any noteworthy prior knowledge on how to approach those kinds of problems 🥳😄😎 I really liked todays challenge - totally unbiased statement! 😄 Flood fill (I guess?) with some form of edge detection (part 1 simple, part 2 quite a lot more complex).
+
+## Day 13
+
+Part 1 easy, I just complicated it because the memoization condition was wrong (missing =). For part 2 I am completely out of ideas though. Tried some thing (division, A*, etc.) but none seem to be appropriate. 🤔 Will have to give this one some more thought. I blame it on my low quality sleep as I watched The Game Awards last night and went to sleep some time after 5 AM (and woke up at 8:30AM) 😎😅 So far I have had an excuse for every situation 😉 (coincidence 🤞)
