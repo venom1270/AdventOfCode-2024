@@ -2,10 +2,8 @@ package solutions_day2
 
 import (
 	"bufio"
-	"container/heap"
 	"fmt"
 	"log"
-	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -16,8 +14,19 @@ type Pos struct {
 	y int
 }
 
+type BigPos struct {
+	x int64
+	y int64
+}
+
 type Machine struct {
 	prizePos Pos
+	buttonA  Pos
+	buttonB  Pos
+}
+
+type BigMachine struct {
+	prizePos BigPos
 	buttonA  Pos
 	buttonB  Pos
 }
@@ -75,9 +84,9 @@ func min(x int, y int) int {
 }
 
 func dfs_rec(machine Machine, clawPos Pos, price int, buttonPresses Pos) int {
-	//if buttonPresses.x > 100 || buttonPresses.y > 100 {
-	//	return -1
-	//}
+	if buttonPresses.x > 100 || buttonPresses.y > 100 {
+		return -1
+	}
 
 	if clawPos == machine.prizePos {
 		return price
@@ -91,7 +100,6 @@ func dfs_rec(machine Machine, clawPos Pos, price int, buttonPresses Pos) int {
 
 	if clawPos.x != 0 && clawPos.y != 0 && machine.prizePos.x%clawPos.x == 0 && machine.prizePos.y%clawPos.y == 0 && machine.prizePos.x/clawPos.x == machine.prizePos.y/clawPos.y {
 		skip := machine.prizePos.x / clawPos.x
-		fmt.Println("qwe")
 		pressA = dfs_rec(machine, Pos{clawPos.x * skip, clawPos.y * skip}, price*skip, Pos{buttonPresses.x * skip, buttonPresses.y * skip})
 	} else {
 		el, ok := memo[clawPos]
@@ -129,139 +137,47 @@ func dfs(machines []Machine) int {
 		memo = map[Pos]int{}
 		p := dfs_rec(m, Pos{0, 0}, 0, Pos{0, 0})
 		if p != -1 {
-			fmt.Println("Machine has price ", p, m)
+			//fmt.Println("Machine has price ", p, m)
 			minPrice += p
 		} else {
-			fmt.Println("Machine has no possible combinations", m)
+			//fmt.Println("Machine has no possible combinations", m)
 		}
 	}
 	return minPrice
 }
 
-// An Item is something we manage in a priority queue.
-type Item struct {
-	clawPos       Pos // The value of the item; arbitrary.
-	buttonPresses Pos
-	price         int
-	priority      int // The priority of the item in the queue. -- PRICE
-	// The index is needed by update and is maintained by the heap.Interface methods.
-	index int // The index of the item in the heap.
-}
+func cr(machine BigMachine) int {
 
-// A PriorityQueue implements heap.Interface and holds Items.
-type PriorityQueue []*Item
+	var x int64 = 0
+	var y int64 = 0
 
-func (pq PriorityQueue) Len() int { return len(pq) }
+	D := int64(machine.buttonA.x*machine.buttonB.y - machine.buttonA.y*machine.buttonB.x)
+	Dx := machine.prizePos.x*int64(machine.buttonB.y) - machine.prizePos.y*int64(machine.buttonB.x)
+	Dy := machine.prizePos.y*int64(machine.buttonA.x) - machine.prizePos.x*int64(machine.buttonA.y)
 
-func (pq PriorityQueue) Less(i, j int) bool {
-	// We want Pop to give us the highest, not lowest, priority so we use greater than here.
-	//return pq[i].priority > pq[j].priority
-	return pq[i].priority < pq[j].priority // Return lowest first
-}
+	x = Dx / D
+	y = Dy / D
 
-func (pq PriorityQueue) Swap(i, j int) {
-	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
-}
+	checkX := x*int64(machine.buttonA.x) + y*int64(machine.buttonB.x)
+	checkY := x*int64(machine.buttonA.y) + y*int64(machine.buttonB.y)
 
-func (pq *PriorityQueue) Push(x any) {
-	n := len(*pq)
-	item := x.(*Item)
-	item.index = n
-	*pq = append(*pq, item)
-}
-
-func (pq *PriorityQueue) Pop() any {
-	old := *pq
-	n := len(old)
-	item := old[n-1]
-	old[n-1] = nil  // don't stop the GC from reclaiming the item eventually
-	item.index = -1 // for safety
-	*pq = old[0 : n-1]
-	return item
-}
-
-// update modifies the priority and value of an Item in the queue.
-func (pq *PriorityQueue) update(item *Item, clawPos Pos, buttonPresses Pos, priority int) {
-	item.clawPos = clawPos
-	item.buttonPresses = buttonPresses
-	item.priority = priority
-	heap.Fix(pq, item.index)
-}
-
-func distance(p1 Pos, p2 Pos) int {
-	dx := p1.x - p2.x
-	dy := p1.y - p2.y
-	if dx < 0 {
-		dx *= -1
-	}
-	if dy < 0 {
-		dy *= -1
-	}
-	return int(math.Sqrt(float64(dx*dx + dy*dy)))
-}
-
-func aStarMachine(machine Machine) int {
-	minPrice := 0
-
-	pq := make(PriorityQueue, 1)
-	pq[0] = &Item{
-		clawPos:       Pos{0, 0},
-		buttonPresses: Pos{0, 0},
-		price:         0,
-		priority:      0,
-		index:         0,
-	}
-	heap.Init(&pq)
-
-	// Take the items out; they arrive in increasing priority order.
-	for pq.Len() > 0 {
-		item := heap.Pop(&pq).(*Item)
-
-		if item.buttonPresses.x > 100 || item.buttonPresses.y > 100 {
-			continue
-		}
-
-		if item.clawPos == machine.prizePos {
-			return item.priority
-		}
-
-		if item.clawPos.x >= machine.prizePos.x || item.clawPos.y >= machine.prizePos.y {
-			continue
-		}
-
-		fmt.Println(item)
-
-		if item.clawPos.x != 0 && item.clawPos.y != 0 && machine.prizePos.x%item.clawPos.x == 0 && machine.prizePos.y%item.clawPos.y == 0 && machine.prizePos.x/item.clawPos.x == machine.prizePos.y/item.clawPos.y {
-			skip := machine.prizePos.x / item.clawPos.x
-			fmt.Println("qwe")
-			return item.priority * skip
-		}
-
-		pressA := &Item{
-			clawPos:       Pos{item.clawPos.x + machine.buttonA.x, item.clawPos.y + machine.buttonA.y},
-			buttonPresses: Pos{item.buttonPresses.x + 1, item.buttonPresses.y},
-			price:         item.price + 3,
-			priority:      item.price + 3 + distance(item.clawPos, machine.prizePos),
-		}
-		pressB := &Item{
-			clawPos:       Pos{item.clawPos.x + machine.buttonB.x, item.clawPos.y + machine.buttonB.y},
-			buttonPresses: Pos{item.buttonPresses.x, item.buttonPresses.y + 1},
-			price:         item.price + 1,
-			priority:      item.price + 1 + distance(item.clawPos, machine.prizePos),
-		}
-		heap.Push(&pq, pressA)
-		heap.Push(&pq, pressB)
+	if checkX == machine.prizePos.x && checkY == machine.prizePos.y {
+		return int(x*3 + y)
+	} else {
+		return 0
 	}
 
-	return minPrice
 }
 
-func aStar(machines []Machine) int {
+func cramersRule(machines []BigMachine) int {
 	minPrice := 0
 	for _, m := range machines {
-		p := aStarMachine(m)
+		p := cr(m)
+		if p != 0 {
+			//fmt.Println("Machine has price ", p, m)
+		} else {
+			//fmt.Println("Machine has no possible combinations", m)
+		}
 		minPrice += p
 	}
 
@@ -269,16 +185,18 @@ func aStar(machines []Machine) int {
 }
 
 func Solve() {
-	machines := readInput("solutions/13/test.txt")
-	fmt.Println(machines)
+	machines := readInput("solutions/13/input.txt")
+	//fmt.Println(machines)
 
-	// Part 1
+	// Part 1 -- DFS search
 	fmt.Println(dfs(machines))
 
-	// Part 2
-	for i, _ := range machines {
-		machines[i].prizePos.x += 10000000000000
-		machines[i].prizePos.y += 10000000000000
+	// Part 2 -- linear equasion solve - Cramer rule
+	var bigMachines []BigMachine
+	for i := range machines {
+		var p2 int64 = 10000000000000
+		bigMachines = append(bigMachines, BigMachine{BigPos{int64(machines[i].prizePos.x) + p2, int64(machines[i].prizePos.y) + p2}, machines[i].buttonA, machines[i].buttonB})
+
 	}
-	fmt.Println(aStar(machines))
+	fmt.Println(cramersRule(bigMachines))
 }
