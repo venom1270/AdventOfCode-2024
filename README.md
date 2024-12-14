@@ -74,3 +74,7 @@ Part 1 easy, I just complicated it because the memoization condition was wrong (
 EDIT: After briefly looking on the AoC subreddit, I noticed a helpful keyword: *linear equasions*. Of course! In hindsight it's obvious, this problem is nothing more than a series of linear equasions (2 equasions, 2 variables). How to solve them programatically? I went digging into my brain and on the web and the obvious answer presents itself - *Gauss elimination*, of course! But it looked a bit tiresome to write in code, so I went digging some more - there's another method that I've long forgotten even exists (long time since uni 😅) - *Cramer's Law*. It just calculates 3 easy matrix determinants and you get the answer. The only trick is that you have to check if the solutions actually solves the equasions (sometimes it doesn't - found this by trial&error). So yeah, used online (non-AI) resources to implement actual __MATH__, how cool is that? 😎😎 Though I have to say this one bamboozled me hard, with going deep into DFS, A* and other useless methods. 🤪
 
 *Side note: even though this commit was made after midnight, I still count this under the same day since the answer was submitted the same day*
+
+## Day 14
+
+Part 1 suspiciously easy, while for part 2 the instructions are not really clear... what constitutes a "christmas tree" exactly? This one came a bit out of the blue 🤔
