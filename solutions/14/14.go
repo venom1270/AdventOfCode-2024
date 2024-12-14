@@ -138,6 +138,10 @@ func findTreeAtPos(robots []Robot, W int, H int, pos Pos) bool {
 
 		if robotOnPos(robots, Pos{x, y + height}) && robotOnPos(robots, Pos{x, y + height + 1}) {
 			// At least one+1 robot as root
+			if height < 5 {
+				return false
+			}
+			fmt.Println("Found! H W", height, width)
 			return true
 		}
 
@@ -208,5 +212,3 @@ func Solve() {
 
 	fmt.Println("Tree found!")
 }
-
-// 719 -- too low

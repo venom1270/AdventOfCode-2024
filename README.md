@@ -78,3 +78,5 @@ EDIT: After briefly looking on the AoC subreddit, I noticed a helpful keyword: *
 ## Day 14
 
 Part 1 suspiciously easy, while for part 2 the instructions are not really clear... what constitutes a "christmas tree" exactly? This one came a bit out of the blue 🤔
+
+EDIT: After returning from the barber, I solved it in 5 mins. 😎 All I had to do is make sure the height is more than 4 - I wasn't sure if smaller trees count so that condition was just a wild guess on my part, but it provided the right answer. 😎😎 While this part 2 twist was pretty cool, the instructions do not give any direction on how the tree should look like at all (min size, trunk size, do fields around it have to be empty etc.) so it was a rather poor (but, again, cool) challenge. 😉
