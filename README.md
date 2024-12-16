@@ -84,3 +84,9 @@ EDIT: After returning from the barber, I solved it in 5 mins. 😎 All I had to 
 ## Day 15
 
 This one was pretty fun. Just a straightforward simulation! For part 2 I stumbled a bit but then figured out the most optimal (probably) solution - use an array to keep track of all the boxes to move and then move them if all conditions are met. This day took me about two hours to solve, mostly trackong bugs (*damn indexes, grrrr*) 😄
+
+## Day 16
+
+That was a nice one! Used a priority queue (copy from GO example). Took like half an hour to find a bug in part 1 - I had the direction enum written as: `Up`, `Down`, `Left`, `Right`, so when I calculated a new direction it was obviously wrong! That was kind of stupid on my part. 😅😅😅 Part 2 not that difficult, but I preemptively did a deep copy of all path arrays so I avoided all GO's shenanigans with references behind the scenes. The solution took a few seconds, but it works! 😉 So far so good, only a few days left! I expect the difficulty to reach the end-game stage, so I better buckle up! 😎
+
+Side note: the thing that bothers me the most this year is *me*. I made so many stupid bugs on trivial things and days that were objectively easy (like today) to do if you had the right approach. But we learn from our mistakes, as they say 🤞.
