@@ -4,7 +4,7 @@
 
 This year it's GO time 😎 ...
 
-... ~~and VIM time~~ for the VIM 😎 ... *courtesy of @nsk4*
+... ~~and VIM time~~ for the VIM 😎 ... *(correction courtesy of @nsk4)*
 
 ... and stream time 😎 (although we will see how that goes)!
 
@@ -95,7 +95,7 @@ Side note: the thing that bothers me the most this year is *me*. I made so many 
 
 A cool puzzle, part 1 is straightforward. Had some trouble with submission as I though it has to be submitted without commas (like all other puzzles). Spent half an hour "debugging" 😅. Part 2 is a bit strange as I think I tried all valid values that are in the most plausible range. If I increase the range further, the output length is much longer than the initial program, and register A decreases by a factor of 8 each loop, so they for sure don't get shorter. Maybe I'm missing something here? 🤔
 
-EDIT 18.12.2024: Like I said - I couldn't let it rest 😅 Looked at some hints on reddit and finally made it, I feel like a god!!! 😅😎⛩️🙏 The trick was just to look at the bits (last 3 bits) of A and just beep adding them until you get to the desired output. This is a not a general solution at all, it is tied to this exact program, but I guess it was meant to be solved like that. Anyway, like I wrote in remarks for `Day 18`, I kept thinking about it - and it finally paid off! *Was it worth it? Can't say. But it feels Fkin amazing!!!* 🥳🎉
+EDIT 18.12.2024: Like I said - I couldn't let it rest 😅 Looked at some hints on reddit (very vague) and finally made it, I feel like a god!!! 😅😎⛩️🙏 The trick was just to look at the bits (that was the biggest hint; last 3 bits) of A and just keep adding them until you get to the desired output. This is a not a general solution at all, it is tied to this exact program, but I guess it was meant to be solved like that. Anyway, like I wrote in remarks for `Day 18`, I kept thinking about this problem - and it finally paid off! *Was it worth it? Can't say. But it feels fkin amazing!!!* 🥳🎉
 
 ## Day 18
 
