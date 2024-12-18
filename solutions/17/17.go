@@ -123,7 +123,7 @@ func findCopy(a, b, c int, commands []int) int {
 		commandString += strconv.Itoa(el)
 	}
 
-	/*fmt.Println(len(commandString))
+	fmt.Println(len(commandString))
 	fmt.Println(len(simulate(0, b, c, commands)))
 	fmt.Println(len(simulate(10000, b, c, commands)))
 	fmt.Println(len(simulate(1000000, b, c, commands)))
@@ -131,17 +131,22 @@ func findCopy(a, b, c int, commands []int) int {
 	fmt.Println(len(simulate(10000000000, b, c, commands)))
 	fmt.Println(len(simulate(100000000000, b, c, commands)))
 	fmt.Println(len(simulate(1000000000000, b, c, commands)))
-	fmt.Println(len(simulate(10000000000000, b, c, commands)))
+	fmt.Println(len(simulate(30000000000000, b, c, commands)))
+	fmt.Println(len(simulate(290000000000000, b, c, commands)))
 	fmt.Println(len(simulate(100000000000000, b, c, commands)))
-	fmt.Println(len(simulate(1000000000000000000, b, c, commands)))
-	return 123*/
+	//return 123
 
 	var ai int
 	// 10000000000
 	// 13710000000
-	for ai = 1000000; ai < 1000000000; ai += 1 {
-		if ai%10000000 == 0 {
-			fmt.Println(ai)
+	//200000000
+
+	start := 30000000000000
+	end := 290000000000000
+
+	for ai = start; ai < end; ai += 8 {
+		if ai%10000000000 == 0 {
+			fmt.Println(float64(ai-start) * 100 / float64(end-start))
 		}
 		aTest, bTest, cTest := ai, b, c
 		iPtr := 0
@@ -151,14 +156,7 @@ func findCopy(a, b, c int, commands []int) int {
 			aTest, bTest, cTest, iPtr, out = step(aTest, bTest, cTest, commands, iPtr)
 			if out != "" {
 				outStr += out
-				if len(outStr) >= len(commandString) {
-					fmt.Println("Too long!!")
-				}
 				if outStr != commandString[:len(outStr)] {
-					if len(outStr) > 7 {
-						fmt.Println(len(outStr), ai)
-					}
-
 					break
 				}
 			}

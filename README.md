@@ -94,3 +94,9 @@ Side note: the thing that bothers me the most this year is *me*. I made so many 
 ## Day 17
 
 A cool puzzle, part 1 is straightforward. Had some trouble with submission as I though it has to be submitted without commas (like all other puzzles). Spent half an hour "debugging" 😅. Part 2 is a bit strange as I think I tried all valid values that are in the most plausible range. If I increase the range further, the output length is much longer than the initial program, and register A decreases by a factor of 8 each loop, so they for sure don't get shorter. Maybe I'm missing something here? 🤔
+
+## Day 18
+
+For a change, this day was a breeze! 😎 Everything done in first try, no bugs or major mistakes! 😄 Used A* algorithm, which is similar to the things I used on previous days (*priority queue*). Part 2 was just iterating through all possibilities until there is no path anymore, takes less than a second (but is not instant). 
+
+Day 17 is constantly on my mind. I read a hint on reddit that I should try it backwards - get the numbers for register A that output the last program digit. Then backtrack to find the next ones etc. until I reach the first program digit. Not really sure how to implement that yet, but will keep trying (and dreaming about it)! 🤔
