@@ -120,55 +120,49 @@ func findCopy(a, b, c int, commands []int) int {
 	// Transform commands to string for easier comparison
 	commandString := ""
 	for _, el := range commands {
-		commandString += strconv.Itoa(el)
+		commandString += strconv.Itoa(el) + ","
 	}
+	commandString = commandString[:len(commandString)-1]
 
-	fmt.Println(len(commandString))
-	fmt.Println(len(simulate(0, b, c, commands)))
-	fmt.Println(len(simulate(10000, b, c, commands)))
-	fmt.Println(len(simulate(1000000, b, c, commands)))
-	fmt.Println(len(simulate(1000000000, b, c, commands)))
-	fmt.Println(len(simulate(10000000000, b, c, commands)))
-	fmt.Println(len(simulate(100000000000, b, c, commands)))
-	fmt.Println(len(simulate(1000000000000, b, c, commands)))
-	fmt.Println(len(simulate(30000000000000, b, c, commands)))
-	fmt.Println(len(simulate(290000000000000, b, c, commands)))
-	fmt.Println(len(simulate(100000000000000, b, c, commands)))
-	//return 123
+	var numsToCheck []int
+	numsToCheck = append(numsToCheck, 0)
+	numsToCheck = append(numsToCheck, 1)
+	numsToCheck = append(numsToCheck, 2)
+	numsToCheck = append(numsToCheck, 3)
+	numsToCheck = append(numsToCheck, 4)
+	numsToCheck = append(numsToCheck, 5)
+	numsToCheck = append(numsToCheck, 6)
+	numsToCheck = append(numsToCheck, 7)
 
-	var ai int
-	// 10000000000
-	// 13710000000
-	//200000000
-
-	start := 30000000000000
-	end := 290000000000000
-
-	for ai = start; ai < end; ai += 8 {
-		if ai%10000000000 == 0 {
-			fmt.Println(float64(ai-start) * 100 / float64(end-start))
+	count := 1
+	for len(numsToCheck) > 0 {
+		if len(numsToCheck) == 0 {
+			fmt.Println("FAIL!!!")
 		}
-		aTest, bTest, cTest := ai, b, c
-		iPtr := 0
-		out := ""
-		outStr := ""
-		for iPtr < len(commands) {
-			aTest, bTest, cTest, iPtr, out = step(aTest, bTest, cTest, commands, iPtr)
-			if out != "" {
-				outStr += out
-				if outStr != commandString[:len(outStr)] {
-					break
+		var newNums []int
+		for i := 0; i <= 7; i++ {
+			//fmt.Println(i)
+
+			for _, num := range numsToCheck {
+				aVal := num*pow(2, 3) + i
+				outStr := simulate(aVal, b, c, commands)
+				//fmt.Println("Checking ", outStr, commandString)
+				if outStr == commandString {
+					return aVal
+				}
+				if len(outStr)/2 == count && len(outStr) <= len(commandString) && (outStr == commandString[:len(outStr)] || outStr == commandString[len(commandString)-len(outStr):]) {
+					//fmt.Println("SAME!")
+					newNums = append(newNums, aVal)
 				}
 			}
-		}
 
-		if outStr == commandString {
-			fmt.Println(outStr, commandString)
-			break
 		}
+		numsToCheck = newNums
+		//fmt.Println(numsToCheck)
+		count++
 	}
 
-	return ai
+	return -1
 }
 
 func Solve() {

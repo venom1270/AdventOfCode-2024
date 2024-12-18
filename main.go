@@ -94,5 +94,5 @@ func day18() {
 }
 
 func main() {
-	day18()
+	day17()
 }
