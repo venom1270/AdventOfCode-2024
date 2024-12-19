@@ -102,3 +102,7 @@ EDIT 18.12.2024: Like I said - I couldn't let it rest 😅 Looked at some hints 
 For a change, this day was a breeze! 😎 Everything done in first try, no bugs or major mistakes! 😄 Used A* algorithm, which is similar to the things I used on previous days (*priority queue*). Part 2 was just iterating through all possibilities until there is no path anymore, takes less than a second (but is not instant). 
 
 Day 17 is constantly on my mind. I read a hint on reddit that I should try it backwards - get the numbers for register A that output the last program digit. Then backtrack to find the next ones etc. until I reach the first program digit. Not really sure how to implement that yet, but will keep trying (and dreaming about it)! 🤔
+
+## Day 19
+
+Another easy day! 🥳 Just a simple recursion with memoization in part 2. That's two *really* easy days in a row (sub 30 mins)... makes me nervous about what's coming. (Tomorrow is Friday, so "weekend" by AoC standards - it's most likely gonna be a long day 😅).
