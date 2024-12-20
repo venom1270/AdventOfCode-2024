@@ -106,3 +106,9 @@ Day 17 is constantly on my mind. I read a hint on reddit that I should try it ba
 ## Day 19
 
 Another easy day! 🥳 Just a simple recursion with memoization in part 2. That's two *really* easy days in a row (sub 30 mins)... makes me nervous about what's coming. (Tomorrow is Friday, so "weekend" by AoC standards - it's most likely gonna be a long day 😅).
+
+## Day 20
+
+Phew, I spent quite a lot of time on this one. THe funny thing - today was also pretty easy - if you know *how to read*, which I apparently *don't* 😅😅
+
+So, the big gamechanger was the fact that when cheating, you have to end up back on the shortest path! I thought that you can go anywhere and bypass the shortest route entirely, so I (well, at least tried to 😅) set up  elaborate BFS and DFS algorithms to find all the possibilites - until I re-read the instructions a few times and saw this detail, which made this day trivial comparatively (both part 1 and 2). Anyway, another rather easy day done, bracing for the weekend! 😎🤞

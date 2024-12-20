@@ -13,6 +13,7 @@ import (
 	d18 "aoc2024/solutions/18"
 	d19 "aoc2024/solutions/19"
 	d2 "aoc2024/solutions/2"
+	d20 "aoc2024/solutions/20"
 	d3 "aoc2024/solutions/3"
 	d4 "aoc2024/solutions/4"
 	d5 "aoc2024/solutions/5"
@@ -98,6 +99,10 @@ func day19() {
 	d19.Solve()
 }
 
+func day20() {
+	d20.Solve()
+}
+
 func main() {
-	day19()
+	day20()
 }
