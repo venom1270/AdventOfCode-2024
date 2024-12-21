@@ -36,20 +36,12 @@ type Pos struct {
 
 func getGrid() [][]rune {
 	grid := [][]rune{
-		[]rune{'7', '8', '9'},
-		[]rune{'4', '5', '6'},
-		[]rune{'1', '2', '3'},
-		[]rune{'X', '0', 'A'},
+		{'7', '8', '9'},
+		{'4', '5', '6'},
+		{'1', '2', '3'},
+		{'X', '0', 'A'},
 	}
 	return grid
-}
-
-func getKeypad() [][]rune {
-	keypad := [][]rune{
-		[]rune{'X', 'U', 'A'},
-		[]rune{'L', 'D', 'R'},
-	}
-	return keypad
 }
 
 func distance(x, y Pos) int {
@@ -165,8 +157,8 @@ func getShortestPathsKeypad(start rune, end rune) []string {
 		case '<':
 			return []string{"v<"}
 		case '>':
-			//return []string{"v>", ">v"}
-			return []string{"v>"}
+			return []string{"v>", ">v"}
+			//return []string{"v>"}
 		case 'v':
 			return []string{"v"}
 		case 'A':
@@ -182,8 +174,8 @@ func getShortestPathsKeypad(start rune, end rune) []string {
 		case '^':
 			return []string{"^"}
 		case 'A':
-			//return []string{"^>", ">^"}
-			return []string{"^>"}
+			return []string{"^>", ">^"}
+			//return []string{"^>"}
 		}
 	}
 	if start == '<' {
@@ -206,8 +198,8 @@ func getShortestPathsKeypad(start rune, end rune) []string {
 		case '<':
 			return []string{"<<"}
 		case '^':
-			//return []string{"<^", "^<"}
-			return []string{"<^"}
+			return []string{"<^", "^<"}
+			//return []string{"<^"}
 		case 'A':
 			return []string{"^"}
 		}
@@ -215,8 +207,8 @@ func getShortestPathsKeypad(start rune, end rune) []string {
 	if start == 'A' {
 		switch end {
 		case 'v':
-			//return []string{"<v", "v<"}
-			return []string{"<v"}
+			return []string{"<v", "v<"}
+			//return []string{"<v"}
 		case '>':
 			return []string{"v"}
 		case '^':
@@ -241,24 +233,6 @@ func getDigitPos(grid [][]rune, digit rune) Pos {
 	panic("no digit!")
 }
 
-func filterShortestPaths(paths []string) []string {
-	shortestPaths := []string{}
-	// Find shortest
-	shortestLen := 9999999999
-	for _, p := range paths {
-		if len(p) < shortestLen {
-			shortestLen = len(p)
-		}
-	}
-	// Only take shortest
-	for _, p := range paths {
-		if len(p) == shortestLen {
-			shortestPaths = append(shortestPaths, p)
-		}
-	}
-	return shortestPaths
-}
-
 func getCodeValue(code string) int {
 	val := 0
 	for i, _ := range code {
@@ -269,35 +243,6 @@ func getCodeValue(code string) int {
 		}
 	}
 	return val
-}
-
-func getScore(path string) int {
-	score := 0
-	for i := range len(path) - 1 {
-		if path[i] == path[i+1] {
-			score++
-		}
-	}
-	return score
-}
-
-func filterBestScore(paths []string) []string {
-	bestPaths := []string{}
-	// Find best score
-	bestScore := 0
-	for _, p := range paths {
-		score := getScore(p)
-		if score > bestScore {
-			bestScore = score
-		}
-	}
-	// Only take best paths
-	for _, p := range paths {
-		if getScore(p) == bestScore {
-			bestPaths = append(bestPaths, p)
-		}
-	}
-	return bestPaths
 }
 
 func getSequence(grid [][]rune, codes []string, numRobots int) {
@@ -326,65 +271,67 @@ func getSequence(grid [][]rune, codes []string, numRobots int) {
 			start = end
 		}
 
-		//fmt.Println(paths)
-
-		// Go through all the robots...
-		for i := range numRobots {
-			fmt.Println(i)
-			for _, p := range paths {
-				translatedStr := []string{""}
-				var tmp []string
-				s := 'A'
-				for _, pi := range p {
-					for _, sp := range getShortestPathsKeypad(s, pi) {
-						for _, ts := range translatedStr {
-							tmp = append(tmp, ts+sp+"A")
-						}
-
-					}
-					translatedStr = tmp
-					tmp = nil
-					s = pi
-				}
-				newPaths = append(newPaths, translatedStr...)
+		shortest := 999999999999999999
+		memo = map[MemoKey]int{}
+		for _, p := range paths {
+			path := dfs(p, 'A', 0, numRobots)
+			if path < shortest {
+				shortest = path
 			}
-			paths = newPaths
-			newPaths = nil
-
-			// Find shortest path and filter out paths that are longer....
-
-			//fmt.Println("Before filter: ", len(paths))
-			paths = filterShortestPaths(paths)
-			fmt.Println("Before best score: ", len(paths))
-			paths = filterBestScore(paths)
-			fmt.Println("After: ", len(paths))
-			//fmt.Println(len(paths))
-
 		}
-
-		//fmt.Println(paths)
-		/*for _, p := range paths {
-			if p == "<vA<AA>>^AvAA<^A>A<v<A>>^AvA^A<vA>^A<v<A>^A>AAvA^A<v<A>A>^AAAvA<^A>A" {
-				fmt.Println("OK!!!")
-			}
-		}*/
-
-		fmt.Println("Shortest path len:", len(paths[0]))
-		shortestPathLengths = append(shortestPathLengths, len(paths[0]))
+		shortestPathLengths = append(shortestPathLengths, shortest)
 
 		paths = []string{""}
 		newPaths = nil
 		start = Pos{3, 2}
 	}
 
-	fmt.Println(shortestPathLengths)
+	//fmt.Println(shortestPathLengths)
 
 	complexity := 0
 	for i := range shortestPathLengths {
 		complexity += shortestPathLengths[i] * getCodeValue(codes[i])
 	}
 
-	fmt.Println("Part 1 (complexity): ", complexity)
+	fmt.Println("Complexity: ", complexity)
+}
+
+type MemoKey struct {
+	path  string
+	depth int
+	start rune
+}
+
+var memo map[MemoKey]int
+
+func dfs(path string, start rune, depth int, maxDepth int) int {
+	key := MemoKey{path, depth, start}
+
+	if el, ok := memo[key]; ok {
+		return el
+	}
+
+	if depth >= maxDepth {
+		return len(path)
+	}
+
+	// Check all moves in path
+	shortestPathLen := 0
+	for _, p := range path {
+		shortestPaths := getShortestPathsKeypad(start, p)
+		shortestPathTmp := 999999999999999999
+		for _, sp := range shortestPaths {
+			tmp := dfs(sp+"A", 'A', depth+1, maxDepth)
+			if tmp < shortestPathTmp {
+				shortestPathTmp = tmp
+			}
+		}
+		start = p
+		shortestPathLen += shortestPathTmp
+	}
+
+	memo[key] = shortestPathLen
+	return shortestPathLen
 }
 
 func Solve() {
@@ -392,8 +339,8 @@ func Solve() {
 	fmt.Println(codes)
 
 	grid := getGrid()
+	fmt.Println("PART 1")
 	getSequence(grid, codes, 2)
-
+	fmt.Println("PART 2")
 	getSequence(grid, codes, 25)
-
 }

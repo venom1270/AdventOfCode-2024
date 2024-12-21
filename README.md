@@ -116,3 +116,5 @@ So, the big gamechanger was the fact that when cheating, you have to end up back
 ## Day 21
 
 That was a fun one! An optimization challenge. I only did part 1, I have to think about how to optimize this a bit more for part 2. But the coding and the general situation itself was really fun, even though part 2 is going to be quite a challenge 😄
+
+EDIT: Well, a few moments after writing this, I got the idea to try switching to a DFS approach when instructing the robots. Just switching from BFS to DFS (with memoization) solved all issues. So yeah, 3+1 more days to go, feeling quite good about this. 😎 Also I feel like I got a lot better both at writing GO and writing relatively fast on this split keyboard (especially common programming symbols). 😎😄
