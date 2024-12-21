@@ -112,3 +112,7 @@ Another easy day! 🥳 Just a simple recursion with memoization in part 2. That'
 Phew, I spent quite a lot of time on this one. THe funny thing - today was also pretty easy - if you know *how to read*, which I apparently *don't* 😅😅
 
 So, the big gamechanger was the fact that when cheating, you have to end up back on the shortest path! I thought that you can go anywhere and bypass the shortest route entirely, so I (well, at least tried to 😅) set up  elaborate BFS and DFS algorithms to find all the possibilites - until I re-read the instructions a few times and saw this detail, which made this day trivial comparatively (both part 1 and 2). Anyway, another rather easy day done, bracing for the weekend! 😎🤞
+
+## Day 21
+
+That was a fun one! An optimization challenge. I only did part 1, I have to think about how to optimize this a bit more for part 2. But the coding and the general situation itself was really fun, even though part 2 is going to be quite a challenge 😄
