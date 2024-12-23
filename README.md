@@ -122,3 +122,9 @@ EDIT: Well, a few moments after writing this, I got the idea to try switching to
 ## Day 22
 
 Wow, this was pretty easy. Done in about 45 minutes, no major bugs or showstoppers. 😎 For part 2 I wanted to do some kind of brute force at first, but then just naturally used maps in such a way that I wrote (as far as I can see right now) the most optimal soultion from the get go 😄 Otherwise, surprisingly easy for a weekend 20+ day. I attribute that to *my own skill*, right? *Right?* 😉
+
+## Day 23
+
+Finally a graph problem! Solved in about an hour, but I felt a bit rusty writing the algorithm for the graph search. Overall part 1 was quick & easy, however the solution is not the best one as it takes about 5 seconds to compute the answer 😅. Good enough I guess. Part 2 was a bit of a head scratcher at first. I didn't have a clear idea on how to approach it. I mostly hardcorded the trio search in part 1 so I had to come up with something dynamic. I started writing a variant of a BFS, but luckily quickly realized that's more trouble than it's worth and switchet to the good ol' recursion DFS. No major bugs (this is a trend I think - each day getting better at GO and solving these kinds of tasks 😎), but the solution wen nowhere - stuck at first iteration! Of course, memoization is always the answer, so I quickly wrote a janky *memoizer* (is that even a word 🤔) and now it's instant. Well, I actually had *one* tiny bug, relating to passing arrays by reference, but quickly soreted that by copying the array everytime. Oh, and I was really relieved to find that GO already has a sorting library 😄. I used the `sort.String()` method to sort the string array. The only "complaint" that I have is that it's in-place so I had to manually copy everything afterwards.
+
+In conclusion, nearing the end and still going strong! 💪 Feeling pretty good about this year! 😎 *I hope I did not just jinx myself*
