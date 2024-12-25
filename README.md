@@ -1,19 +1,21 @@
 # AdventOfCode-2024
 
+🎉*AoC2024 completed!🎉 [Click here for final remarks!](#final-remarks)*
+
 ## In short...
 
-This year it's GO time 😎 ...
+This year it's **[GO](https://go.dev/)** time 😎 ...
 
-... ~~and VIM time~~ for the VIM 😎 ... *(correction courtesy of @nsk4)*
+... ~~and VIM time~~ for the **[VIM](https://www.vim.org/)** 😎 ... *(correction courtesy of @nsk4)*
 
-... and stream time 😎 (although we will see how that goes)!
+... and **[stream](https://www.youtube.com/watch?v=P-8qIgW-_QQ&list=PL6LQvcO9SYHFuhRItqUr8lPSZdYIaxJy4&index=25)** time 😎 (although we will see how that goes)!
 
 
 That's about it. Simple, right?
 
 *Also a side note: this chapter was written in VIM!*
 
-Oh, yeah, trying to use a split keyboard (Sofle) with EN key layout! 😎
+Oh, yeah, trying to use a split keyboard (**[Sofle](https://josefadamcik.github.io/SofleKeyboard/)**) with EN key layout! 😎
 
 Phew, now that really is everything! 😅
 
@@ -136,4 +138,50 @@ Ok, part 1 was relatively easy, however part 2 is proving to be a challenge. �
 EDIT 25.12.2024: Finally made it!! Had to look on reddit for some hints and found out a lot of people did it by hand... 🤦‍♂️ So I did too and it was surprisingly simple. What can I say, an interesting challenge, but I am not a fan of challenges where you have to do it by hand. Similar to `Day 17`, where you don't actually make a general solution/program, but just hack something together that works for a specific input and/or constraints. I did think of solving it by hand at some point, but decided not to as I presumed that the wire swaps are A LOT more complicated.
 
 Anyhow, I am leaving all the code intact. If I (or you, curious stranger) want to laugh and facepalm sometime in the future, this is the day to do it. Everything is on display. 😎😅
+
+## Day 25
+
+And this is it! An easy day for the finale (although to be honest, Day 24 was plenty hard enought - at least time-wise). 
+
+Not much to say here, except some final overall remarks.
+
+Oh and a picture of course! 😎
+
+![AoC 2024 calendar](/calendar.png)
+
+## Final remarks
+
+I have to say I enjoyed this year's AoC a lot! The puzzles were just the right difficulty for me. I feel they were a bit easier than previous years, but that's ok! I spent enough time (much more than I care to admit) anyway so this kind of difficulty feels "just right". 😄
+
+One thing I didn't enjoy as much were the days where you have to manually inspect the input and fit the solution to some constraint, usually second parts of some days. Namely: [Day 24](#day-24) (just swap wires manually), [Day 17](#day-17) (solution works for just that kind of input - have to manually figure out what the input is doing) and partly [Day 14](#day-14) (no clarification on what the ouput should look like). All of those are admittedly very cool, but I would prefer a bit more instructions on what to do (i.e. program a general solution, or just get the answer by and means neccessary).
+
+When it comes to my "challenge", here's my assessment:
+
+- **[GO](https://go.dev/)**
+    - I think I got quite proficient by the end
+    - I like the language overall
+    - Python would still be much easier/faster/shorter
+    - Glad I chose GO!
+
+- **[VIM](https://www.vim.org/) ([VSCode plugin](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim))**
+    - Didn't really use any shortcuts TBH
+    - Mostly fought agains it than embraced it (mouse copy pasting, repositioning cursor, etc.)
+    - I am a bit disappointed I didn't push myself to try using it more in the early days, since challenges were fairly short
+    - Is still an option for next year!
+
+- **[Sofle split keyboard](https://josefadamcik.github.io/SofleKeyboard/) + EN key layout**
+    - In the early days I struggled a lot with symbols `[]{}''"";:|`, now I'm much more comfortable, but still make mistakes
+    - Writing letters is mostly no problem at all
+    - Have to do more typing, especially programming, with that setup!
+
+- **[Streaming](https://www.youtube.com/watch?v=P-8qIgW-_QQ&list=PL6LQvcO9SYHFuhRItqUr8lPSZdYIaxJy4&index=25)**
+    - Streamed every day
+    - Part 2 was not always streamed - sometimes I had to take a prolonged break, so I canceled the stream and continued off-stream later
+    - First half of the month I also did a voice over ("narration") - went well, but I was not always able to speak, so I stopped
+    - Overall, a nice little memento on Youtube, got almost no viewers (and that's fine)
+    - Definately have to try doing something similar next year!
+
+ Overall, very happy with today's year! 
+ 
+ And with that I'm retiring this repository 🧓, **merry Christmas and happy new year 2025!** ⛄🥳🎉
 
