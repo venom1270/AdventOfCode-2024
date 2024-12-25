@@ -136,3 +136,4 @@ Ok, part 1 was relatively easy, however part 2 is proving to be a challenge. �
 EDIT 25.12.2024: Finally made it!! Had to look on reddit for some hints and found out a lot of people did it by hand... 🤦‍♂️ So I did too and it was surprisingly simple. What can I say, an interesting challenge, but I am not a fan of challenges where you have to do it by hand. Similar to `Day 17`, where you don't actually make a general solution/program, but just hack something together that works for a specific input and/or constraints. I did think of solving it by hand at some point, but decided not to as I presumed that the wire swaps are A LOT more complicated.
 
 Anyhow, I am leaving all the code intact. If I (or you, curious stranger) want to laugh and facepalm sometime in the future, this is the day to do it. Everything is on display. 😎😅
+
