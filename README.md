@@ -6,7 +6,7 @@
 
 This year it's **[GO](https://go.dev/)** time 😎 ...
 
-... ~~and VIM time~~ for the **[VIM](https://www.vim.org/)** 😎 ... *(correction courtesy of @nsk4)*
+... ~~and VIM time~~ for the **[VIM](https://www.vim.org/)** 😎 ... *(correction courtesy of [@nsk4](https://github.com/nsk4))*
 
 ... and **[stream](https://www.youtube.com/watch?v=P-8qIgW-_QQ&list=PL6LQvcO9SYHFuhRItqUr8lPSZdYIaxJy4&index=25)** time 😎 (although we will see how that goes)!
 
