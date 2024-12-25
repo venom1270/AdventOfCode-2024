@@ -2,10 +2,12 @@ package solutions_day2
 
 import (
 	"bufio"
+	"container/heap"
 	"fmt"
 	"log"
 	"os"
 	"slices"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -194,7 +196,7 @@ var swapMap map[string]string
 func getErrorWires(expressions map[string]Expr) ([]string, int) {
 	x, y, z := 0, 0, 0
 	maxShift := 0
-	for key, _ := range expressions {
+	/*for key, _ := range expressions {
 		if key[0] == 'z' || key[0] == 'x' || key[0] == 'y' {
 			keyVal := calculate(expressions, key)
 			shift, _ := strconv.Atoi(key[1:])
@@ -210,6 +212,28 @@ func getErrorWires(expressions map[string]Expr) ([]string, int) {
 				z += keyVal << shift
 			}
 		}
+	}*/
+
+	carry := 0
+	for i := 0; i <= 44; i++ {
+		var xStr, yStr, zStr string
+		if i < 10 {
+			xStr = "x0" + strconv.Itoa(i)
+			yStr = "y0" + strconv.Itoa(i)
+			zStr = "z0" + strconv.Itoa(i)
+		} else {
+			xStr = "x" + strconv.Itoa(i)
+			yStr = "y" + strconv.Itoa(i)
+			zStr = "z" + strconv.Itoa(i)
+		}
+
+		xVal, yVal, zVal := calculate(expressions, xStr), calculate(expressions, yStr), calculate(expressions, zStr)
+		fmt.Println(xVal, yVal, zVal, expressions[zStr], carry)
+		if xVal^yVal^carry != zVal {
+			fmt.Println("Error", i)
+			return getDependantWires(expressions, zStr), 0
+		}
+		carry = xVal ^ yVal ^ carry ^ 1
 	}
 
 	var wires []string
@@ -229,6 +253,59 @@ func getErrorWires(expressions map[string]Expr) ([]string, int) {
 			wires = append(wires, e3)
 		}
 		maxShift--
+	}
+
+	//fmt.Println(wires)
+
+	var allWires []string
+	for _, w := range wires {
+		dw := getDependantWires(expressions, w)
+		if dw == nil {
+			return nil, 999999
+		}
+		for _, el := range dw {
+			if !slices.Contains(allWires, el) {
+				allWires = append(allWires, el)
+			}
+		}
+		//allWires = append(allWires, dw...)
+	}
+
+	//fmt.Println(allWires)
+	//fmt.Println(len(allWires))
+	//return removeDuplicate(allWires), len(wires)
+	//fmt.Println(len(wires))
+	return allWires, len(wires)
+
+}
+
+func getErrorWiresDecimalCheck(expressions map[string]Expr) ([]string, int) {
+	x, y, z := 0, 0, 0
+	maxShift := 0
+	for key, _ := range expressions {
+		if key[0] == 'z' || key[0] == 'x' || key[0] == 'y' {
+			keyVal := calculate(expressions, key)
+			shift, _ := strconv.Atoi(key[1:])
+			if shift > maxShift {
+				maxShift = shift
+			}
+			switch key[0] {
+			case 'x':
+				x += keyVal << shift
+			case 'y':
+				y += keyVal << shift
+			case 'z':
+				z += keyVal << shift
+			}
+		}
+	}
+
+	var wires []string
+	//sum := x + y
+	for maxShift >= 0 {
+		if z-(1<<maxShift) > 0 {
+			// TODO i guess
+		}
 	}
 
 	//fmt.Println(wires)
@@ -396,7 +473,7 @@ func setRecalculateFlag(expressions map[string]Expr, keyIncluded map[string][]st
 
 type SwapCache struct {
 	expressions  map[string]Expr
-	swaps        []int
+	swaps        []string
 	errors       int
 	nextFrontier []string
 }
@@ -404,12 +481,12 @@ type SwapCache struct {
 func part2Smart(expressions map[string]Expr) {
 	allKeys, numErrors := getErrorWires(expressions)
 
-	allKeys = []string{}
+	/*allKeys = []string{}
 	for key, exp := range expressions {
 		if exp.op != "" {
 			allKeys = append(allKeys, key)
 		}
-	}
+	}*/
 
 	// Cache all wires where key is included
 	/*keyIncluded := map[string][]string{}
@@ -463,7 +540,7 @@ func part2Smart(expressions map[string]Expr) {
 				}
 				fmt.Println(err, numErrors, len(nextFrontier))
 				fmt.Println(allKeys[i], allKeys[j]) //, allKeys[k], allKeys[l])
-				nextIter = append(nextIter, SwapCache{e, []int{i, j}, err, nextFrontier})
+				nextIter = append(nextIter, SwapCache{e, []string{allKeys[i], allKeys[j]}, err, nextFrontier})
 			}
 			//setRecalculateFlag(expressions, keyIncluded, []string{allKeys[i], allKeys[j]})
 			//}
@@ -478,7 +555,7 @@ func part2Smart(expressions map[string]Expr) {
 		for i := 0; i < len(ni.nextFrontier)-1; i++ {
 			for j := i + 1; j < len(ni.nextFrontier); j++ {
 
-				if slices.Contains(ni.swaps, i) || slices.Contains(ni.swaps, j) {
+				if slices.Contains(ni.swaps, ni.nextFrontier[i]) || slices.Contains(ni.swaps, ni.nextFrontier[j]) {
 					continue
 				}
 
@@ -503,11 +580,12 @@ func part2Smart(expressions map[string]Expr) {
 				//fmt.Println(err, numErrors)
 				if err < ni.errors {
 					if err < minErr {
+						fmt.Println(err)
 						minErr = err
 					}
 					//fmt.Println(err, numErrors, len(nextFrontier))
 					//fmt.Println(allKeys[i], allKeys[j]) //, allKeys[k], allKeys[l])
-					nextIter = append(nextIter, SwapCache{e, []int{ni.swaps[0], ni.swaps[1], i, j}, err, nextFrontier})
+					nextIter = append(nextIter, SwapCache{e, []string{ni.swaps[0], ni.swaps[1], ni.nextFrontier[i], ni.nextFrontier[j]}, err, nextFrontier})
 				}
 				//setRecalculateFlag(expressions, keyIncluded, []string{allKeys[i], allKeys[j]})
 				//}
@@ -559,7 +637,163 @@ func Solve() {
 	expressions := readInput("solutions/24/input.txt")
 	//fmt.Println(expressions)
 	//part1(expressions)
-	part2Smart(expressions)
+	//part2Smart(expressions)
+	//part2astar(expressions)
+	part2ByHand(expressions)
+}
+
+func setValue(e map[string]Expr, s string, val int) {
+	el := e[s]
+	el.value = val
+	e[s] = el
+}
+
+func part2ByHand(exppressions map[string]Expr) {
+
+	e := copy(exppressions)
+
+	swapWireInPlace(e, "z07", "nqk")
+	swapWireInPlace(e, "fgt", "pcp") // Za tole nism zihr...
+	swapWireInPlace(e, "z24", "fpq")
+	swapWireInPlace(e, "z32", "srn")
+
+	arr := []string{"z07", "nqk", "fgt", "pcp", "z24", "fpq", "z32", "srn"}
+	sort.Strings(arr)
+	fmt.Println("Final result:", strings.Join(arr, ","))
+
+	setValue(e, "x00", 0)
+	setValue(e, "x01", 0)
+
+	//x, y, z := 0, 0, 0
+	//maxShift := 0
+	carry := 0
+	for i := 0; i <= 44; i++ {
+		var xStr, yStr, zStr string
+		if i < 10 {
+			xStr = "x0" + strconv.Itoa(i)
+			yStr = "y0" + strconv.Itoa(i)
+			zStr = "z0" + strconv.Itoa(i)
+		} else {
+			xStr = "x" + strconv.Itoa(i)
+			yStr = "y" + strconv.Itoa(i)
+			zStr = "z" + strconv.Itoa(i)
+		}
+
+		xVal, yVal, zVal := calculate(e, xStr), calculate(e, yStr), calculate(e, zStr)
+		fmt.Println(xVal, yVal, zVal, e[zStr], carry)
+		if xVal^yVal^carry != zVal {
+			fmt.Println("Error", i)
+
+			//fmt.Println(getDependantWires(e, zStr))
+
+		}
+
+		if xVal+yVal == 0 {
+			carry = 0
+		} else if xVal+yVal > 1 {
+			carry = 1
+		}
+
+		//carry = xVal ^ yVal ^ carry ^ 1
+
+	}
+
+}
+
+func part2astar(expressions map[string]Expr) {
+	allKeys, numErrors := getErrorWires(expressions)
+
+	pq := make(PriorityQueue, 1)
+	pq[0] = &Item{
+		el:       SwapCache{expressions, []string{}, numErrors, allKeys},
+		priority: 0,
+		index:    0,
+	}
+
+	heap.Init(&pq)
+
+	//memo = map[Pos]int{}
+
+	for pq.Len() > 0 {
+		el := heap.Pop(&pq).(*Item)
+
+		/*if _, ok := memo[el.pos]; ok {
+			continue
+		}
+		memo[el.pos] = 1*/
+
+		if len(el.el.swaps) == 8 {
+			if el.el.errors == 0 {
+				fmt.Println("FOUND!!!", el.el.swaps)
+			}
+			continue
+		}
+
+		fmt.Println(el.el.errors, el.el.swaps)
+		frontier := el.el.nextFrontier
+		for i := 0; i < len(frontier)-1; i++ {
+			if slices.Contains(el.el.swaps, el.el.nextFrontier[i]) {
+				continue
+			}
+			for j := i + 1; j < len(frontier); j++ {
+				if slices.Contains(el.el.swaps, el.el.nextFrontier[j]) {
+					continue
+				}
+				e := copy(el.el.expressions)
+				swapWireInPlace(e, frontier[i], frontier[j])
+				nextFrontier, err := getErrorWires(e)
+
+				if err < el.el.errors {
+					heap.Push(&pq, &Item{
+						el:       SwapCache{e, append(el.el.swaps, []string{el.el.nextFrontier[i], el.el.nextFrontier[j]}...), err, nextFrontier},
+						priority: err,
+					})
+				}
+
+			}
+		}
+
+	}
+}
+
+type Item struct {
+	el       SwapCache
+	priority int
+	// The index is needed by update and is maintained by the heap.Interface methods.
+	index int // The index of the item in the heap.
+}
+
+// A PriorityQueue implements heap.Interface and holds Items.
+type PriorityQueue []*Item
+
+func (pq PriorityQueue) Len() int { return len(pq) }
+
+func (pq PriorityQueue) Less(i, j int) bool {
+	// We want Pop to give us the lowest, priority so we use greater than here.
+	return pq[i].priority < pq[j].priority
+}
+
+func (pq PriorityQueue) Swap(i, j int) {
+	pq[i], pq[j] = pq[j], pq[i]
+	pq[i].index = i
+	pq[j].index = j
+}
+
+func (pq *PriorityQueue) Push(x any) {
+	n := len(*pq)
+	item := x.(*Item)
+	item.index = n
+	*pq = append(*pq, item)
+}
+
+func (pq *PriorityQueue) Pop() any {
+	old := *pq
+	n := len(old)
+	item := old[n-1]
+	old[n-1] = nil  // don't stop the GC from reclaiming the item eventually
+	item.index = -1 // for safety
+	*pq = old[0 : n-1]
+	return item
 }
 
 // SWAP 2
